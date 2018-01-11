@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShareFlow.Application.Process.Interface;
 using ShareFlow.Application.Process.Interfaces;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Services;
@@ -14,6 +13,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
 using ShareFlow.Infrastructure.Shared.Interfaces;
 using ShareFlow.Infrastructure.Comunication;
+using ShareFlow.Core.Services;
 
 namespace Interface
 {
@@ -39,6 +39,8 @@ namespace Interface
 
             services.AddScoped<IEventProcess, EventProcess>();
             services.AddScoped<IParticipantProcess, ParticipantProcess>();
+
+            services.AddScoped<IMessageService, MessageService>();
 
             services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
 

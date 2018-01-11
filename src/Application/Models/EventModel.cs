@@ -2,6 +2,9 @@
 
 namespace ShareFlow.Application.Models
 {
+    /// <summary>
+    /// Represent an event
+    /// </summary>
     public class EventModel : BaseModel
     {
         public string WrittingURL { get; internal set; }

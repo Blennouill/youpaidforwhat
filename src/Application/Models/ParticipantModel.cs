@@ -2,8 +2,12 @@
 
 namespace ShareFlow.Application.Models
 {
+    /// <summary>
+    /// Represent a participant to an event
+    /// </summary>
     public class ParticipantModel : BaseModel
     {
+        [Required]
         public int IdEvenement { get; set; }
 
         [Required]

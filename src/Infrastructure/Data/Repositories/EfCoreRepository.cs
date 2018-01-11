@@ -42,7 +42,7 @@ namespace ShareFlow.Infrastructure.Data.Repositories
             this.Db.SaveChanges();
         }
 
-        public IEnumerable<TEntity> List()
+        public IReadOnlyList<TEntity> List()
         {
             return this.Table.ToList();
         }

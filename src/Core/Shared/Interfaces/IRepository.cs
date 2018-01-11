@@ -5,7 +5,7 @@ namespace ShareFlow.Domain.Shared.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
-        IEnumerable<TEntity> List();
+        IReadOnlyList<TEntity> List();
 
         TEntity GetByID(int id);
 
