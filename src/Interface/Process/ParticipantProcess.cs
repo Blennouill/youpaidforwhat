@@ -35,5 +35,19 @@ namespace ShareFlow.Interface.Process
 
             return lParticipantModel;
         }
+
+        /// <summary>
+        /// Return participant's list of the specific event
+        /// </summary>
+        /// <param name="urlEvent">url of the event</param>
+        public IReadOnlyList<ParticipantModel> List(string urlEvent)
+        {
+            var lEvent = _eventService.GetBy(pEvent => pEvent.Url == urlEvent || pEvent.ReadingUrl == urlEvent).FirstOrDefault();
+
+            if (lEvent == null)
+                return null;
+
+            return _mapper.Map<IEnumerable<Participant>, List<ParticipantModel>>(_entityService.GetBy(pParticipant => pParticipant.IdEvenement == lEvent.Id));
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace ShareFlow.Interface.Controllers
         [HttpGet("{url}", Name = EventsRoutingName.EVENTS_GET_UNIQUE)]
         public IActionResult Get(string url)
         {
+            var lEvent = _eventProcess.GetByUrl(url);
+            if (lEvent == null)
+                return new NotFoundResult();
+
             return new OkObjectResult(_eventProcess.GetByUrl(url));
         }
 

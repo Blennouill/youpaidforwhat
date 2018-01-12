@@ -17,14 +17,22 @@ namespace ShareFlow.Interface.Controllers
         }
 
         [HttpGet]
-        public IActionResult List()
+        public IActionResult List(string urlEvent)
         {
-            return new OkObjectResult(_participantProcess.GetAll());
+            var participants = _participantProcess.List(urlEvent);
+            if (participants == null)
+                return new NotFoundResult();
+
+            return new OkObjectResult(participants);
         }
 
         [HttpGet("{id}", Name = ParticipantsRoutingName.PARTICIPANTS_GET_UNIQUE)]
         public IActionResult Get(int id)
         {
+            var participant = _participantProcess.GetByID(id);
+            if (participant == null)
+                return new NotFoundResult();
+
             return new OkObjectResult(_participantProcess.GetByID(id));
         }
 
