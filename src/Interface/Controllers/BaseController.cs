@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShareFlow.Application.Models;
-using ShareFlow.Core.Services;
 using ShareFlow.Domain.Interfaces;
+using ShareFlow.Domain.Shared.Models;
 using System.Linq;
 
 namespace ShareFlow.Interface.Controllers
@@ -17,7 +16,7 @@ namespace ShareFlow.Interface.Controllers
         {
             _messageService = messageService;
         }
-        
+
         /// <summary>
         /// Build and return a response depending if errors exists
         /// </summary>
@@ -42,7 +41,7 @@ namespace ShareFlow.Interface.Controllers
         }
 
         /// <summary>
-        /// Get error from model state control and send to the current messaging service 
+        /// Get error from model state control and send to the current messaging service
         /// </summary>
         protected void NotifyModelStateErrors()
         {

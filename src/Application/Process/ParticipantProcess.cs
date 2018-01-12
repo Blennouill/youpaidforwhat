@@ -9,8 +9,23 @@ namespace ShareFlow.Domain.Services
 {
     public class ParticipantProcess : ResourceProcess<ParticipantModel, Participant>, IParticipantProcess
     {
-        public ParticipantProcess(IEntityService<Participant> service, IMapper mapper) : base(service, mapper)
+        private readonly IEntityService<Event> _EventService;
+
+        public ParticipantProcess(IEntityService<Participant> service,
+                                    IMapper mapper,
+                                    IEntityService<Event> eventService) : base(service, mapper)
         {
+            _EventService = eventService;
+        }
+
+        public override ParticipantModel Create(ParticipantModel participant)
+        {
+            var lEvent = _EventService.GetBy(pEvent => pEvent.WrittingURL == participant.UrlWrittingEvent);
+
+            if (lEvent == null)
+
+
+            return base.Create(obj);
         }
     }
 }

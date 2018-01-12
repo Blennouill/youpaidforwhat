@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShareFlow.Infrastructure.Shared.Interfaces
+﻿namespace ShareFlow.Infrastructure.Shared.Interfaces
 {
     public interface IEmailConfiguration
     {

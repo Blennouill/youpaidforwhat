@@ -1,5 +1,4 @@
-﻿using ShareFlow.Domain.Entities.Interfaces;
-using ShareFlow.Domain.Shared.Interfaces;
+﻿using ShareFlow.Domain.Shared.Interfaces;
 using System.Collections.Generic;
 
 namespace ShareFlow.Domain.Interfaces
@@ -14,16 +13,17 @@ namespace ShareFlow.Domain.Interfaces
         /// </summary>
         /// <returns></returns>
         bool IsValidOperation();
+
         /// <summary>
         /// Is used to add a new message in the current operation
         /// </summary>
         /// <param name="message">the message to add</param>
         void AddMessage(IMessage message);
+
         /// <summary>
         /// Is used to return all the message from the current operation
         /// </summary>
         /// <returns></returns>
         IList<IMessage> GetMessages();
-
     }
 }

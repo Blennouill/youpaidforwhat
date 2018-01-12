@@ -1,9 +1,10 @@
-﻿using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace ShareFlow.Infrastructure.Data.Repositories
 {
@@ -57,6 +58,11 @@ namespace ShareFlow.Infrastructure.Data.Repositories
             Table.Attach(entity);
             this.Db.Entry(entity).State = EntityState.Modified;
             this.Save();
+        }
+
+        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression)
+        {
+            return this.Table.Where(expression).ToList();
         }
     }
 }

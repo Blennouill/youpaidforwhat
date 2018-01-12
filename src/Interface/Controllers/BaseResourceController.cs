@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShareFlow.Application.Process.Interfaces;
-using ShareFlow.Application.Shared.Interfaces;
 using ShareFlow.Domain.Interfaces;
+using ShareFlow.Interface.Process.Interfaces;
+using ShareFlow.Interface.Shared.Interfaces;
 
 namespace ShareFlow.Interface.Controllers
 {

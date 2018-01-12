@@ -1,7 +1,4 @@
 ﻿using ShareFlow.Infrastructure.Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ShareFlow.Infrastructure.Comunication
 {

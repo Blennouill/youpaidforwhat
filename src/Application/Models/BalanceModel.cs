@@ -6,7 +6,7 @@ namespace ShareFlow.Application.Models
     {
         public int IdEvent { get; set; }
 
-        public List<TransactionModel> Transactions { get; set; }
-        public List<AccountModel> Accounts { get; set; }
+        public List<TransactionModel> Transactions { get; internal set; }
+        public List<AccountModel> Accounts { get; internal set; }
     }
 }
