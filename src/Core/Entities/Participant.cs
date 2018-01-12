@@ -9,6 +9,6 @@ namespace ShareFlow.Domain.Entities
 
         public string FirstName { get; set; }
         public string Email { get; set; }
-        public byte ShareNumber { get; set; }
+        public float ShareNumber { get; set; }
     }
 }

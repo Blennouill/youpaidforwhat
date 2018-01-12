@@ -1,9 +1,7 @@
 ﻿using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ShareFlow.Core.Services
 {
@@ -13,6 +11,11 @@ namespace ShareFlow.Core.Services
     public class MessageService : IMessageService
     {
         private List<IMessage> _messages;
+
+        public MessageService()
+        {
+            _messages = new List<IMessage>();
+        }
 
         /// <summary>
         /// Is used to return all the message from the current operation
@@ -40,6 +43,5 @@ namespace ShareFlow.Core.Services
         {
             _messages.Add(message);
         }
-        
     }
 }

@@ -10,6 +10,6 @@ namespace ShareFlow.Application.Models
         [Required]
         public int IdParticipant { get; set; }
 
-        public byte ShareNumber { get; set; }
+        public float ShareNumber { get; set; } = 0;
     }
 }

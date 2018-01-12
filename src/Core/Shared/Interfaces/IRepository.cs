@@ -1,5 +1,7 @@
 ﻿using ShareFlow.Domain.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace ShareFlow.Domain.Shared.Interfaces
 {
@@ -16,5 +18,7 @@ namespace ShareFlow.Domain.Shared.Interfaces
         void Delete(int id);
 
         void Save();
+
+        IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression);
     }
 }

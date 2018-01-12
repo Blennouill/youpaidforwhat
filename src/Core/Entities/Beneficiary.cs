@@ -8,7 +8,7 @@ namespace ShareFlow.Domain.Entities
         public int IdExpense { get; set; }
         public int IdParticipant { get; set; }
 
-        public byte ShareNumber { get; set; }
+        public float ShareNumber { get; set; }
 
         public virtual Participant Participant { get; set; }
     }

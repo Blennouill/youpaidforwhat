@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFlow.Domain", "Core\ShareFlow.Domain.csproj", "{9ED5B815-DD66-477A-AFD7-2C9FCC2604E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFlow.Infrastructure", "Infrastructure\ShareFlow.Infrastructure.csproj", "{2FD491E8-8849-441F-969B-495929A729BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFlow.Interface", "Interface\ShareFlow.Interface.csproj", "{01EA2B11-704F-4F30-B73C-1221FBCFCC95}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareFlow.Application", "Application\ShareFlow.Application.csproj", "{5D803769-9A28-4B68-AAEA-3528388D6B2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{01EA2B11-704F-4F30-B73C-1221FBCFCC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01EA2B11-704F-4F30-B73C-1221FBCFCC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01EA2B11-704F-4F30-B73C-1221FBCFCC95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D803769-9A28-4B68-AAEA-3528388D6B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D803769-9A28-4B68-AAEA-3528388D6B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D803769-9A28-4B68-AAEA-3528388D6B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D803769-9A28-4B68-AAEA-3528388D6B2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,19 +1,21 @@
-﻿using Infrastructure.Data;
+﻿using AutoMapper;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShareFlow.Application.Process.Interfaces;
+using ShareFlow.Core.Services;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Services;
 using ShareFlow.Domain.Shared.Interfaces;
-using ShareFlow.Infrastructure.Data.Repositories;
-using Swashbuckle.AspNetCore.Swagger;
-using AutoMapper;
-using ShareFlow.Infrastructure.Shared.Interfaces;
 using ShareFlow.Infrastructure.Comunication;
-using ShareFlow.Core.Services;
+using ShareFlow.Infrastructure.Data.Repositories;
+using ShareFlow.Infrastructure.Shared.Interfaces;
+using ShareFlow.Interface.Middlewares;
+using ShareFlow.Interface.Process;
+using ShareFlow.Interface.Process.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Interface
 {
@@ -40,9 +42,9 @@ namespace Interface
             services.AddScoped<IEventProcess, EventProcess>();
             services.AddScoped<IParticipantProcess, ParticipantProcess>();
 
-            services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<INotificationService, NotificationService>();
 
-            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            //services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
 
             services.AddTransient<IEmailService, EmailService>();
 
@@ -80,6 +82,8 @@ namespace Interface
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project API v1.1");
             });
+
+            app.UseResponseDecorating();
 
             app.UseMvc();
         }

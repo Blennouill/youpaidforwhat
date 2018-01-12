@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShareFlow.Core.Shared.Models
+﻿namespace ShareFlow.Core.Shared.Models
 {
     public class EmailAddress
     {

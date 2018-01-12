@@ -8,7 +8,7 @@ namespace ShareFlow.Application.Models
     public class ParticipantModel : BaseModel
     {
         [Required]
-        public int IdEvenement { get; set; }
+        public string UrlWrittingEvent { get; set; }
 
         [Required]
         [MinLength(3)]
@@ -19,6 +19,6 @@ namespace ShareFlow.Application.Models
         public string Email { get; set; }
 
         [Required]
-        public byte ShareNumber { get; set; }
+        public float ShareNumber { get; set; } = 0;
     }
 }
