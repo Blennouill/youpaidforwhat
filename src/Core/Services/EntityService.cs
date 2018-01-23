@@ -1,9 +1,8 @@
 ﻿using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 
 namespace ShareFlow.Domain.Services
 {
@@ -16,7 +15,7 @@ namespace ShareFlow.Domain.Services
             this._repository = repository;
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> List()
         {
             return this._repository.List();
         }
@@ -48,9 +47,9 @@ namespace ShareFlow.Domain.Services
             this._repository.Save();
         }
 
-        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> AsQuery()
         {
-            return this._repository.GetBy(expression);
+            return this._repository.AsQuery();
         }
     }
 }

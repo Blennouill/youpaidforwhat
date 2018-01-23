@@ -2,6 +2,7 @@
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Tools;
+using ShareFlow.Infrastructure.Data.Extensions;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace ShareFlow.Interface.Process
         {
             string lConvertedTitle = pEventModel.Title.Substring(0, (pEventModel.Title.Length < 20 ? pEventModel.Title.Length : 20)).ReplaceAccentedCharacter();
 
-            pEventModel.ReadingUrl = string.Concat(lConvertedTitle, System.Guid.NewGuid().ToString().Replace("-", ""));
-            pEventModel.Url = string.Concat(lConvertedTitle, System.Guid.NewGuid().ToString().Replace("-", ""));
+            pEventModel.ReadingUrl = string.Concat(lConvertedTitle, "-", System.Guid.NewGuid().ToString().Replace("-", ""));
+            pEventModel.Url = string.Concat(lConvertedTitle, "-", System.Guid.NewGuid().ToString().Replace("-", ""));
 
             if (this.GetByUrl(pEventModel.ReadingUrl) != null || this.GetByUrl(pEventModel.Url) != null)
                 this.Create(pEventModel);
@@ -36,7 +37,7 @@ namespace ShareFlow.Interface.Process
 
         public EventModel GetByUrl(string url)
         {
-            var lEvent = _entityService.GetBy(pEvent => pEvent.Url == url || pEvent.ReadingUrl == url).FirstOrDefault();
+            var lEvent = _entityService.AsQuery().FilterBy(pEvent => pEvent.Url == url || pEvent.ReadingUrl == url).FirstOrDefault();
             
             return _mapper.Map<Event, EventModel>(lEvent);
         }

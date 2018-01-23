@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShareFlow.Interface.Filters;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
 using ShareFlow.Interface.Shared;
@@ -18,10 +19,15 @@ namespace ShareFlow.Interface.Controllers
         [HttpGet("{url}", Name = EventsRoutingName.EVENTS_GET_UNIQUE)]
         public IActionResult Get(string url)
         {
+            var lEvent = _eventProcess.GetByUrl(url);
+            if (lEvent == null)
+                return new NotFoundResult();
+
             return new OkObjectResult(_eventProcess.GetByUrl(url));
         }
 
         [HttpPost]
+        [ModelStateValidationFilter]
         public IActionResult Post([FromBody]EventModel eventModel)
         {
             var lEvent = _eventProcess.Create(eventModel);

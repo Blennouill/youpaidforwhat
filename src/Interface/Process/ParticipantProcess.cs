@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
+using ShareFlow.Infrastructure.Data.Extensions;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
 using System.Collections.Generic;
@@ -19,21 +20,32 @@ namespace ShareFlow.Interface.Process
             _eventService = eventService;
         }
 
-        public ParticipantModel Create(ParticipantModel pParticipantModel, string urlEvent)
+        public ParticipantModel Create(ParticipantModel participantModel, string urlEvent)
         {
-            var lEvent = _eventService.GetBy(pEvent => pEvent.Url == urlEvent).FirstOrDefault();
-            ParticipantModel lParticipantModel = null;
+            var lEvent = _eventService.AsQuery().FilterBy(pEvent => pEvent.Url == urlEvent).FirstOrDefault();
 
-            if (lEvent != null)
-            {
-                var lParticipant = _mapper.Map<ParticipantModel, Participant>(pParticipantModel);
-                lParticipant.IdEvenement = lEvent.Id;
-                lParticipant = _entityService.Create(lParticipant);
+            if (lEvent == null)
+                return null;
 
-                lParticipantModel = _mapper.Map<Participant, ParticipantModel>(lParticipant);
-            }
+            var participant = _mapper.Map<ParticipantModel, Participant>(participantModel);
+            participant.EventId = lEvent.Id;
+            participant = _entityService.Create(participant);
+            
+            return _mapper.Map<Participant, ParticipantModel>(participant);
+        }
 
-            return lParticipantModel;
+        /// <summary>
+        /// Return participant's list of the specific event
+        /// </summary>
+        /// <param name="urlEvent">url of the event</param>
+        public IReadOnlyList<ParticipantModel> List(string urlEvent)
+        {
+            var lEvent = _eventService.AsQuery().FilterBy(pEvent => pEvent.Url == urlEvent || pEvent.ReadingUrl == urlEvent).FirstOrDefault();
+
+            if (lEvent == null)
+                return null;
+
+            return _mapper.Map<IEnumerable<Participant>, List<ParticipantModel>>(_entityService.AsQuery().FilterBy(pParticipant => pParticipant.EventId == lEvent.Id).ToList());
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Interface
 
             services.AddScoped<IEventProcess, EventProcess>();
             services.AddScoped<IParticipantProcess, ParticipantProcess>();
+            services.AddScoped<IExpenseProcess, ExpenseProcess>();
 
             services.AddScoped<INotificationService, NotificationService>();
 
@@ -52,7 +53,10 @@ namespace Interface
 
             services.AddMemoryCache();
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(
+                    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddSwaggerGen(c =>
             {
