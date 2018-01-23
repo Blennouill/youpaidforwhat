@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Expressions;
 using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
+using ShareFlow.Infrastructure.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace ShareFlow.Infrastructure.Data.Repositories
 {
     public class EfCoreRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        protected DbContext Db { get; }
+        private DbContext Db { get; }
         private DbSet<TEntity> Table;
 
         public EfCoreRepository(DbContext dbContext)
@@ -22,8 +24,11 @@ namespace ShareFlow.Infrastructure.Data.Repositories
         public void Delete(int id)
         {
             TEntity existing = this.GetByID(id);
-            if (existing != null)
-                this.Table.Remove(existing);
+            if (existing == null)
+                return;
+
+            this.Table.Remove(existing);
+            this.Save();
         }
 
         public void Delete(TEntity TEntity)
@@ -60,9 +65,10 @@ namespace ShareFlow.Infrastructure.Data.Repositories
             this.Save();
         }
 
-        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> AsQuery()
         {
-            return this.Table.Where(expression).ToList();
+            return this.Table.AsQueryable();
         }
+        
     }
 }

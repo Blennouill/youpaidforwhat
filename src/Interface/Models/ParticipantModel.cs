@@ -16,6 +16,6 @@ namespace ShareFlow.Interface.Models
         public string Email { get; set; }
 
         [Required]
-        public float ShareNumber { get; set; } = 0;
+        public float ShareNumber { get; set; } = 1;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using ShareFlow.Domain.Entities.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 
 namespace ShareFlow.Domain.Shared.Interfaces
 {
@@ -19,6 +18,6 @@ namespace ShareFlow.Domain.Shared.Interfaces
 
         void Save();
 
-        IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> AsQuery();
     }
 }

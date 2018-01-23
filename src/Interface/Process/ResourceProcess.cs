@@ -48,7 +48,7 @@ namespace ShareFlow.Interface.Process
 
         public virtual IEnumerable<TModel> GetAll()
         {
-            var models = _mapper.Map<IEnumerable<TModel>>(_entityService.GetAll());
+            var models = _mapper.Map<IEnumerable<TModel>>(_entityService.List());
 
             return models;
         }

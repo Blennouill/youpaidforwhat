@@ -1,13 +1,12 @@
 ﻿using ShareFlow.Domain.Entities.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 
 namespace ShareFlow.Domain.Interfaces
 {
     public interface IEntityService<TEntity> where TEntity : IEntity
     {
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> List();
 
         TEntity GetByID(int id);
 
@@ -19,6 +18,6 @@ namespace ShareFlow.Domain.Interfaces
 
         void Save();
 
-        IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> AsQuery();
     }
 }
