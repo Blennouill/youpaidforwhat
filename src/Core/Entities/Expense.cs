@@ -17,6 +17,6 @@ namespace ShareFlow.Domain.Entities
         public Category Category { get; set; }
         public int ParticipantId { get; set; }
         public Participant Participant { get; set; }
-        public List<Beneficiary> Beneficiaries { get; set; }
+        public virtual List<Beneficiary> Beneficiaries { get; set; }
     }
 }
