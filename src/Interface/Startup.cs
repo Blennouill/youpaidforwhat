@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShareFlow.Core.Services;
+using ShareFlow.Core.Services.Interface;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Services;
 using ShareFlow.Domain.Shared.Interfaces;
@@ -38,6 +39,10 @@ namespace Interface
 
             services.AddScoped(typeof(IRepository<>), typeof(EfCoreRepository<>));
             services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
+
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IParticipantService, ParticipantService>();
+            services.AddScoped<IExpenseService, ExpenseService>();
 
             services.AddScoped<IEventProcess, EventProcess>();
             services.AddScoped<IParticipantProcess, ParticipantProcess>();

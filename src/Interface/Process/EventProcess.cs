@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ShareFlow.Core.Services.Interface;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Tools;
@@ -11,10 +12,10 @@ namespace ShareFlow.Interface.Process
 {
     public class EventProcess : IEventProcess
     {
-        private readonly IEntityService<Event> _entityService;
+        private readonly IEventService _entityService;
         private readonly IMapper _mapper;
 
-        public EventProcess(IEntityService<Event> service, IMapper mapper)
+        public EventProcess(IEventService service, IMapper mapper)
         {
             _entityService = service;
             _mapper = mapper;
@@ -37,7 +38,7 @@ namespace ShareFlow.Interface.Process
 
         public EventModel GetByUrl(string url)
         {
-            var lEvent = _entityService.AsQuery().FilterBy(pEvent => pEvent.Url == url || pEvent.ReadingUrl == url).FirstOrDefault();
+            var lEvent = _entityService.GetByUrl(url);
             
             return _mapper.Map<Event, EventModel>(lEvent);
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Expressions;
+using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
 using ShareFlow.Infrastructure.Data.Extensions;
@@ -64,11 +65,13 @@ namespace ShareFlow.Infrastructure.Data.Repositories
             this.Db.Entry(entity).State = EntityState.Modified;
             this.Save();
         }
-
-        public IQueryable<TEntity> AsQuery()
-        {
-            return this.Table.AsQueryable();
-        }
         
+        public IReadOnlyList<TEntity> Find(Specification<TEntity> specification)
+        {
+            return this.Table
+                            .Where(specification.ToExpression())
+                            .ToList();
+        }
+
     }
 }

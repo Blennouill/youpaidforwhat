@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ShareFlow.Core.Services.Interface;
+using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Infrastructure.Data.Extensions;
@@ -11,12 +13,12 @@ namespace ShareFlow.Interface.Process
 {
     public class ExpenseProcess : ResourceProcess<ExpenseModel, Expense>, IExpenseProcess
     {
-        private readonly IEntityService<Participant> _participantService;
+        private readonly IParticipantService _participantService;
         private readonly IEntityService<Category> _categoryService;
 
-        public ExpenseProcess(IEntityService<Expense> expenseService,
+        public ExpenseProcess(IExpenseService expenseService,
                                 IMapper mapper,
-                                IEntityService<Participant> participantService,
+                                IParticipantService participantService,
                                 IEntityService<Category> categoryService) : base(expenseService, mapper)
         {
             _participantService = participantService;
@@ -25,7 +27,7 @@ namespace ShareFlow.Interface.Process
 
         public ExpenseModel Create(ExpenseModel expenseModel, int idParticipant)
         {
-            var participant = _participantService.AsQuery().FilterBy(pParticipant => pParticipant.Id == idParticipant).FirstOrDefault();
+            var participant = _participantService.GetByID(idParticipant);
             if (participant == null)
                 return null;
 
@@ -43,12 +45,11 @@ namespace ShareFlow.Interface.Process
         /// <param name="urlEvent">participant's id</param>
         public IReadOnlyList<ExpenseModel> List(int idParticipant)
         {
-            var participant = _participantService.AsQuery().FilterBy(pParticipant => pParticipant.Id == idParticipant).FirstOrDefault();
-
+            var participant = _participantService.GetByID(idParticipant);
             if (participant == null)
                 return null;
 
-            return _mapper.Map<IEnumerable<Expense>, List<ExpenseModel>>(_entityService.AsQuery().LoadChild(pExpense => pExpense.Beneficiaries).Where(pExpense => pExpense.ParticipantId == participant.Id).ToList());
+            return _mapper.Map<IEnumerable<Expense>, List<ExpenseModel>>(_entityService.FindList(new EqualsExpenseParticipantIdSpecification(participant.Id)));
         }
     }
 }
