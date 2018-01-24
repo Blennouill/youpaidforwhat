@@ -1,4 +1,5 @@
-﻿using ShareFlow.Domain.Entities.Interfaces;
+﻿using ShareFlow.Core.Specifications;
+using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
 using System.Collections.Generic;
@@ -13,11 +14,6 @@ namespace ShareFlow.Domain.Services
         public EntityService(IRepository<TEntity> repository)
         {
             this._repository = repository;
-        }
-
-        public virtual IEnumerable<TEntity> List()
-        {
-            return this._repository.List();
         }
 
         public virtual TEntity GetByID(int id)
@@ -47,9 +43,14 @@ namespace ShareFlow.Domain.Services
             this._repository.Save();
         }
 
-        public IQueryable<TEntity> AsQuery()
+        public virtual TEntity FindOne(Specification<TEntity> specification)
         {
-            return this._repository.AsQuery();
+            return this._repository.Find(specification).FirstOrDefault();
         }
+
+        public virtual IReadOnlyList<TEntity> FindList(Specification<TEntity> specification)
+        {
+            return this._repository.Find(specification).ToList();
+        }       
     }
 }

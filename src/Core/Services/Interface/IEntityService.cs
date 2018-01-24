@@ -1,4 +1,5 @@
-﻿using ShareFlow.Domain.Entities.Interfaces;
+﻿using ShareFlow.Core.Specifications;
+using ShareFlow.Domain.Entities.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,8 +7,6 @@ namespace ShareFlow.Domain.Interfaces
 {
     public interface IEntityService<TEntity> where TEntity : IEntity
     {
-        IEnumerable<TEntity> List();
-
         TEntity GetByID(int id);
 
         TEntity Create(TEntity obj);
@@ -17,7 +16,10 @@ namespace ShareFlow.Domain.Interfaces
         void Delete(int id);
 
         void Save();
+        
+        TEntity FindOne(Specification<TEntity> specification);
 
-        IQueryable<TEntity> AsQuery();
+        IReadOnlyList<TEntity> FindList(Specification<TEntity> specification);
+
     }
 }

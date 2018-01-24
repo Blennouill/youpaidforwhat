@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ShareFlow.Core.Services.Interface;
+using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Infrastructure.Data.Extensions;
@@ -11,18 +13,18 @@ namespace ShareFlow.Interface.Process
 {
     public class ParticipantProcess : ResourceProcess<ParticipantModel, Participant>, IParticipantProcess
     {
-        private readonly IEntityService<Event> _eventService;
+        private readonly IEventService _eventService;
 
-        public ParticipantProcess(IEntityService<Participant> participantService,
+        public ParticipantProcess(IParticipantService participantService,
                                     IMapper mapper,
-                                    IEntityService<Event> eventService) : base(participantService, mapper)
+                                    IEventService eventService) : base(participantService, mapper)
         {
             _eventService = eventService;
         }
 
         public ParticipantModel Create(ParticipantModel participantModel, string urlEvent)
         {
-            var lEvent = _eventService.AsQuery().FilterBy(pEvent => pEvent.Url == urlEvent).FirstOrDefault();
+            var lEvent = _eventService.GetByUrl(urlEvent);
 
             if (lEvent == null)
                 return null;
@@ -40,12 +42,12 @@ namespace ShareFlow.Interface.Process
         /// <param name="urlEvent">url of the event</param>
         public IReadOnlyList<ParticipantModel> List(string urlEvent)
         {
-            var lEvent = _eventService.AsQuery().FilterBy(pEvent => pEvent.Url == urlEvent || pEvent.ReadingUrl == urlEvent).FirstOrDefault();
+            var lEvent = _eventService.GetByAnyUrl(urlEvent);
 
             if (lEvent == null)
                 return null;
 
-            return _mapper.Map<IEnumerable<Participant>, List<ParticipantModel>>(_entityService.AsQuery().FilterBy(pParticipant => pParticipant.EventId == lEvent.Id).ToList());
+            return _mapper.Map<IEnumerable<Participant>, List<ParticipantModel>>(_entityService.FindList(new EqualsParticipantEventIdSpecification(lEvent.Id)));
         }
     }
 }

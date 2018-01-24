@@ -20,6 +20,6 @@ namespace ShareFlow.Interface.Models
         /// Define participants id's for which is the expense with theirs respective share in it
         /// </summary>
         [Required]
-        public List<BeneficiaryModel> Beneficiaries { get; set; }
+        public List<BeneficiaryModel> Beneficiaries { internal get; set; }
     }
 }
