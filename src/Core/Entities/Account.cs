@@ -10,7 +10,7 @@ namespace ShareFlow.Domain.Entities
         public decimal Amount { get; private set; }
 
         public virtual Participant Participant { get; set; }
-        
+
         public int ParentId { get => ParticipantId; }
 
         public Account()
@@ -26,9 +26,10 @@ namespace ShareFlow.Domain.Entities
         public Account AdditionateAmount(decimal value)
         {
             this.Amount += value;
-            
+
             return this;
         }
+
         public Account SubstractAmount(decimal value)
         {
             this.Amount -= value;

@@ -3,7 +3,6 @@ using ShareFlow.Core.Services.Interface;
 using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Interfaces;
-using ShareFlow.Infrastructure.Data.Extensions;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
 using System;
@@ -59,8 +58,8 @@ namespace ShareFlow.Interface.Process
                 account.SubstractAmount(expense.Amount * Convert.ToDecimal(beneficiary.ShareNumber / Convert.ToDouble(expenseModel.Beneficiaries.Sum(pBeneficiary => pBeneficiary.ShareNumber))));
                 _accountService.Update(account);
             }
-            
-            return _mapper.Map<Expense, ExpenseModel>(expense); 
+
+            return _mapper.Map<Expense, ExpenseModel>(expense);
         }
 
         /// <summary>

@@ -6,6 +6,7 @@ namespace ShareFlow.Interface.Process.Interfaces
     public interface ITransactionProcess
     {
         IReadOnlyList<TransactionModel> List(string eventUrl);
+
         void GenerateTransactionsByEvent(int eventId);
     }
 }

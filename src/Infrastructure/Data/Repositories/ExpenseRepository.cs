@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore.Internal;
 using ShareFlow.Core.Shared.Interfaces;
 using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ShareFlow.Infrastructure.Data.Repositories
 {

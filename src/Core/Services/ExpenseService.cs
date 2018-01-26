@@ -1,7 +1,6 @@
 ﻿using ShareFlow.Core.Services.Interface;
 using ShareFlow.Core.Shared.Interfaces;
 using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Shared.Interfaces;
 using System.Collections.Generic;
 
 namespace ShareFlow.Domain.Services

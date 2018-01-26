@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShareFlow.Interface.Filters;
-using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
-using ShareFlow.Interface.Shared;
 
 namespace ShareFlow.Interface.Controllers.Event
 {

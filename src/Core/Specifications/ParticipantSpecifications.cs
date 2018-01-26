@@ -10,16 +10,15 @@ namespace ShareFlow.Core.Specifications
     public class EqualsParticipantEventIdSpecification : Specification<Participant>
     {
         private readonly int _eventId;
-        
+
         public EqualsParticipantEventIdSpecification(int eventId)
         {
             _eventId = eventId;
         }
-        
+
         public override Expression<Func<Participant, bool>> ToExpression()
         {
             return participant => participant.EventId == _eventId;
         }
     }
-    
 }

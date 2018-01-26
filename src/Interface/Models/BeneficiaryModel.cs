@@ -6,6 +6,7 @@ namespace ShareFlow.Interface.Models
     {
         [Required]
         public int ParticipantId { get; set; }
+
         /// <remarks>cf https://stackoverflow.com/questions/19811180/best-data-annotation-for-a-decimal18-2 </remarks>
         [RegularExpression(@"^\d+(\.\d{1,1})?$")]
         [Range(-9999999999999999.99, 10)]

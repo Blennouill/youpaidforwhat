@@ -1,8 +1,6 @@
 ﻿using ShareFlow.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ShareFlow.Core.Specifications
 {
@@ -12,19 +10,15 @@ namespace ShareFlow.Core.Specifications
     public class EqualsToReadingOrWrittingURLSpecification : Specification<Event>
     {
         private readonly string _eventUrl;
-        
+
         public EqualsToReadingOrWrittingURLSpecification(string eventUrl)
         {
-
             _eventUrl = eventUrl;
-
         }
-        
+
         public override Expression<Func<Event, bool>> ToExpression()
         {
-
             return lEvent => lEvent.Url == _eventUrl || lEvent.ReadingUrl == _eventUrl;
-
         }
     }
 
@@ -37,16 +31,12 @@ namespace ShareFlow.Core.Specifications
 
         public UrlMustBeUniqueSpecification(Event pEvent)
         {
-
             _event = pEvent;
-
         }
 
         public override Expression<Func<Event, bool>> ToExpression()
         {
-
             return lEvent => lEvent.Url == _event.Url || lEvent.ReadingUrl == _event.ReadingUrl;
-
         }
     }
 
@@ -59,9 +49,7 @@ namespace ShareFlow.Core.Specifications
 
         public UrlMustBeEqualToMainUrlSpecification(string eventUrl)
         {
-
             _eventUrl = eventUrl;
-
         }
 
         public override Expression<Func<Event, bool>> ToExpression()

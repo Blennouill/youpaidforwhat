@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ShareFlow.Core.Specifications
 {
@@ -12,9 +10,7 @@ namespace ShareFlow.Core.Specifications
     /// <remarks>Cf http://enterprisecraftsmanship.com/2016/02/08/specification-pattern-c-implementation/</remarks>
     public abstract class Specification<T>
     {
-
         public abstract Expression<Func<T, bool>> ToExpression();
-
 
         public bool IsSatisfiedBy(T entity)
         {
@@ -22,12 +18,10 @@ namespace ShareFlow.Core.Specifications
             return predicate(entity);
         }
 
-
         public Specification<T> And(Specification<T> specification)
         {
             return new AndSpecification<T>(this, specification);
         }
-
 
         public Specification<T> Or(Specification<T> specification)
         {
@@ -40,13 +34,11 @@ namespace ShareFlow.Core.Specifications
         private readonly Specification<T> _left;
         private readonly Specification<T> _right;
 
-
         public AndSpecification(Specification<T> left, Specification<T> right)
         {
             _right = right;
             _left = left;
         }
-
 
         public override Expression<Func<T, bool>> ToExpression()
         {
@@ -62,19 +54,16 @@ namespace ShareFlow.Core.Specifications
         }
     }
 
-
     public class OrSpecification<T> : Specification<T>
     {
         private readonly Specification<T> _left;
         private readonly Specification<T> _right;
-
 
         public OrSpecification(Specification<T> left, Specification<T> right)
         {
             _right = right;
             _left = left;
         }
-
 
         public override Expression<Func<T, bool>> ToExpression()
         {
@@ -91,7 +80,6 @@ namespace ShareFlow.Core.Specifications
 
     internal class ParameterReplacer : ExpressionVisitor
     {
-
         private readonly ParameterExpression _parameter;
 
         protected override Expression VisitParameter(ParameterExpression node)

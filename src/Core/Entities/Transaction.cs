@@ -13,13 +13,15 @@ namespace ShareFlow.Domain.Entities
 
         public int ParentId { get => EventId; }
 
-        public Transaction() { }
+        public Transaction()
+        {
+        }
 
         public Transaction(int eventId, int creditParticipantId, int debitParticipantId)
         {
             this.EventId = eventId;
             this.CreditParticipantId = creditParticipantId;
-            this.DebitParticipantId = debitParticipantId; 
+            this.DebitParticipantId = debitParticipantId;
         }
     }
 }

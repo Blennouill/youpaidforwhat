@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using ShareFlow.Core.Services.Interface;
 using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Tools;
-using ShareFlow.Infrastructure.Data.Extensions;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
-using System.Linq;
 
 namespace ShareFlow.Interface.Process
 {
@@ -32,14 +29,14 @@ namespace ShareFlow.Interface.Process
                 this.Create(pEventModel);
 
             var lEvent = _entityService.Create(_mapper.Map<EventModel, Event>(pEventModel));
-            
+
             return _mapper.Map<Event, EventModel>(lEvent);
         }
 
         public EventModel GetByUrl(string url)
         {
             var lEvent = _entityService.GetByUrl(url);
-            
+
             return _mapper.Map<Event, EventModel>(lEvent);
         }
     }

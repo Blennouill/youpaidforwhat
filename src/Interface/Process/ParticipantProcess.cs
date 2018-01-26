@@ -2,12 +2,9 @@
 using ShareFlow.Core.Services.Interface;
 using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Interfaces;
-using ShareFlow.Infrastructure.Data.Extensions;
 using ShareFlow.Interface.Models;
 using ShareFlow.Interface.Process.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ShareFlow.Interface.Process
 {
@@ -40,7 +37,7 @@ namespace ShareFlow.Interface.Process
             participant = _entityService.Create(participant);
 
             _accountService.Create(new Account(participant.Id));
-            
+
             return _mapper.Map<Participant, ParticipantModel>(participant);
         }
 

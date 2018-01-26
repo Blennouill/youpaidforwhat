@@ -1,8 +1,6 @@
 ﻿using ShareFlow.Domain.Entities;
 using ShareFlow.Domain.Shared.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ShareFlow.Core.Shared.Interfaces
 {

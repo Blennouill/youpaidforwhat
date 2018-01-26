@@ -13,7 +13,6 @@ using ShareFlow.Domain.Services;
 using ShareFlow.Domain.Shared.Interfaces;
 using ShareFlow.Infrastructure.Comunication;
 using ShareFlow.Infrastructure.Data.Repositories;
-using ShareFlow.Infrastructure.Shared.Interfaces;
 using ShareFlow.Interface.Middlewares;
 using ShareFlow.Interface.Process;
 using ShareFlow.Interface.Process.Interfaces;

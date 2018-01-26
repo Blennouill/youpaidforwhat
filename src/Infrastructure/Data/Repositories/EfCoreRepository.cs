@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Expressions;
 using ShareFlow.Core.Specifications;
 using ShareFlow.Domain.Entities.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
-using ShareFlow.Infrastructure.Data.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace ShareFlow.Infrastructure.Data.Repositories
 {
@@ -61,7 +57,7 @@ namespace ShareFlow.Infrastructure.Data.Repositories
             Table.Attach(entity);
             this.Db.Entry(entity).State = EntityState.Modified;
         }
-        
+
         public IReadOnlyList<TEntity> Find(Specification<TEntity> specification)
         {
             return this.Table
@@ -75,6 +71,5 @@ namespace ShareFlow.Infrastructure.Data.Repositories
                             .Where(TEntity => TEntity.ParentId == id)
                             .ToList();
         }
-
     }
 }

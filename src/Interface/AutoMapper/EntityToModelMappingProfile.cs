@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ShareFlow.Domain.Entities;
 using ShareFlow.Interface.Models;
-using System.Collections.Generic;
 
 namespace ShareFlow.Interface.AutoMapper
 {
