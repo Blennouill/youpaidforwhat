@@ -1,8 +1,6 @@
 ﻿using ShareFlow.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ShareFlow.Core.Specifications
 {
@@ -15,16 +13,12 @@ namespace ShareFlow.Core.Specifications
         
         public EqualsParticipantEventIdSpecification(int eventId)
         {
-
             _eventId = eventId;
-
         }
         
         public override Expression<Func<Participant, bool>> ToExpression()
         {
-
             return participant => participant.EventId == _eventId;
-
         }
     }
     

@@ -9,5 +9,7 @@ namespace ShareFlow.Domain.Entities
 
         public string Name { get; set; }
         public List<Expense> Expenses { get; set; }
+
+        public int ParentId { get => Id; }
     }
 }

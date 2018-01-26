@@ -10,7 +10,6 @@ namespace ShareFlow.Interface.AutoMapper
         public ModelToEntityMappingProfile()
         {
             CreateMap<AccountModel, Account>();
-            CreateMap<BalanceModel, Balance>();
             CreateMap<BeneficiaryModel, Beneficiary>();
             CreateMap<CategoryModel, Category>();
             CreateMap<EventModel, Event>();

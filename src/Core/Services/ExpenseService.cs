@@ -1,18 +1,23 @@
 ﻿using ShareFlow.Core.Services.Interface;
-using ShareFlow.Core.Specifications;
+using ShareFlow.Core.Shared.Interfaces;
 using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Entities.Interfaces;
-using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Shared.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ShareFlow.Domain.Services
 {
     public class ExpenseService : EntityService<Expense>, IExpenseService
     {
-        public ExpenseService(IRepository<Expense> repository) : base(repository)
+        public ExpenseService(IExpenseRepository repository) : base(repository)
         {
+        }
+
+        /// <summary>
+        /// Retourn the list of expenses which is owned by an event
+        /// </summary>
+        public IReadOnlyList<Expense> ListFromEventId(int eventId)
+        {
+            return ((IExpenseRepository)_repository).ListFromEventId(eventId);
         }
     }
 }

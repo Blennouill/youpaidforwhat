@@ -1,12 +1,12 @@
 ﻿using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Interfaces;
+using ShareFlow.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShareFlow.Core.Services.Interface
+namespace ShareFlow.Core.Shared.Interfaces
 {
-    public interface IAccountService : IEntityService<Account>
+    public interface IAccountRepository : IRepository<Account>
     {
         /// <summary>
         /// Retourn the list of account which is owned by an event

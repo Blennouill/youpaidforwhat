@@ -12,5 +12,7 @@ namespace ShareFlow.Domain.Entities
         public float ShareNumber { get; set; } = 1;
 
         public int EventId { get; set; }
+
+        public int ParentId { get => EventId; }
     }
 }

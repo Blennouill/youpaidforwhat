@@ -41,7 +41,7 @@ namespace ShareFlow.Interface.Controllers.Event
         [ModelStateValidationFilter]
         public IActionResult Post([FromBody]ParticipantModel participantModel, string urlEvent)
         {
-            var participant = _participantProcess.Create(participantModel, urlEvent);
+            var participant = _participantProcess.CreateNewParticipant(participantModel, urlEvent);
             if (participant == null)
                 return new BadRequestResult();
 

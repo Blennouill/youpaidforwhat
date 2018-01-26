@@ -13,8 +13,8 @@ namespace ShareFlow.Infrastructure.Data.Repositories
 {
     public class EfCoreRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbContext Db { get; }
-        private DbSet<TEntity> Table;
+        protected DbContext Db { get; }
+        protected DbSet<TEntity> Table;
 
         public EfCoreRepository(DbContext dbContext)
         {
@@ -29,19 +29,16 @@ namespace ShareFlow.Infrastructure.Data.Repositories
                 return;
 
             this.Table.Remove(existing);
-            this.Save();
         }
 
         public void Delete(TEntity TEntity)
         {
             this.Table.Remove(TEntity);
-            this.Save();
         }
 
         public void Insert(TEntity entity)
         {
             this.Table.Add(entity);
-            this.Save();
         }
 
         public void Save()
@@ -63,13 +60,19 @@ namespace ShareFlow.Infrastructure.Data.Repositories
         {
             Table.Attach(entity);
             this.Db.Entry(entity).State = EntityState.Modified;
-            this.Save();
         }
         
         public IReadOnlyList<TEntity> Find(Specification<TEntity> specification)
         {
             return this.Table
                             .Where(specification.ToExpression())
+                            .ToList();
+        }
+
+        public IReadOnlyList<TEntity> FindByParentId(int id)
+        {
+            return this.Table
+                            .Where(TEntity => TEntity.ParentId == id)
                             .ToList();
         }
 

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ShareFlow.Domain.Entities;
+using ShareFlow.Domain.Interfaces;
 
 namespace ShareFlow.Core.Services.Interface
 {
-    public interface ITransactionService
+    public interface ITransactionService : IEntityService<Transaction>
     {
     }
 }

@@ -14,7 +14,6 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Balance> Balances { get; set; }
         public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Event> Events { get; set; }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace ShareFlow.Interface.Process.Interfaces
 {
-    public interface IBalanceProcess
+    public interface IAccountProcess
     {
-        BalanceModel Create(int eventId);
+        void GenerateAccount(int participantId);
     }
 }

@@ -3,9 +3,9 @@
     public class TransactionModel : BaseModel
     {
         public int IdBalance { get; set; }
-        public int IdCreditParticipant { get; set; }
-        public int IdDebitParticipant { get; set; }
+        public int CreditParticipantId { get; set; }
+        public int DebitParticipantId { get; set; }
 
-        public decimal Ammount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

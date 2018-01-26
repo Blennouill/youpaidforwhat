@@ -13,5 +13,7 @@ namespace ShareFlow.Domain.Entities
 
         public int ParticipantId { get; set; }
         public virtual Participant Participant { get; set; }
+
+        public int ParentId { get => ExpenseId; }
     }
 }

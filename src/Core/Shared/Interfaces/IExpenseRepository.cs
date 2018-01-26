@@ -1,15 +1,15 @@
 ﻿using ShareFlow.Domain.Entities;
-using ShareFlow.Domain.Interfaces;
+using ShareFlow.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShareFlow.Core.Services.Interface
+namespace ShareFlow.Core.Shared.Interfaces
 {
-    public interface IExpenseService : IEntityService<Expense>
+    public interface IExpenseRepository : IRepository<Expense>
     {
         /// <summary>
-        /// Retourn the list of expenses which is owned by an event
+        /// Retourn the list of expense which is owned by an event
         /// </summary>
         IReadOnlyList<Expense> ListFromEventId(int eventId);
     }

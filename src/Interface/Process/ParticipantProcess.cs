@@ -14,15 +14,21 @@ namespace ShareFlow.Interface.Process
     public class ParticipantProcess : ResourceProcess<ParticipantModel, Participant>, IParticipantProcess
     {
         private readonly IEventService _eventService;
+        private readonly IAccountService _accountService;
 
         public ParticipantProcess(IParticipantService participantService,
                                     IMapper mapper,
-                                    IEventService eventService) : base(participantService, mapper)
+                                    IEventService eventService,
+                                    IAccountService accountService) : base(participantService, mapper)
         {
             _eventService = eventService;
+            _accountService = accountService;
         }
 
-        public ParticipantModel Create(ParticipantModel participantModel, string urlEvent)
+        /// <summary>
+        /// Create a new participant to an event with initialization of his account
+        /// </summary>
+        public ParticipantModel CreateNewParticipant(ParticipantModel participantModel, string urlEvent)
         {
             var lEvent = _eventService.GetByUrl(urlEvent);
 
@@ -32,6 +38,8 @@ namespace ShareFlow.Interface.Process
             var participant = _mapper.Map<ParticipantModel, Participant>(participantModel);
             participant.EventId = lEvent.Id;
             participant = _entityService.Create(participant);
+
+            _accountService.Create(new Account(participant.Id));
             
             return _mapper.Map<Participant, ParticipantModel>(participant);
         }
@@ -39,7 +47,6 @@ namespace ShareFlow.Interface.Process
         /// <summary>
         /// Return participant's list of the specific event
         /// </summary>
-        /// <param name="urlEvent">url of the event</param>
         public IReadOnlyList<ParticipantModel> List(string urlEvent)
         {
             var lEvent = _eventService.GetByAnyUrl(urlEvent);

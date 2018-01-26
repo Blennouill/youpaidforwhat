@@ -10,5 +10,7 @@ namespace ShareFlow.Domain.Entities
         public string ReadingUrl { get; set; }
         public string Title { get; set; }
         public string OwnerMail { get; set; }
+
+        public int ParentId { get => Id; }
     }
 }

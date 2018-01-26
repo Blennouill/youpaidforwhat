@@ -24,18 +24,21 @@ namespace ShareFlow.Domain.Services
         public virtual TEntity Create(TEntity obj)
         {
             this._repository.Insert(obj);
+            this.Save();
             return obj;
         }
 
         public virtual TEntity Update(TEntity obj)
         {
             this._repository.Update(obj);
+            this.Save();
             return obj;
         }
 
         public virtual void Delete(int id)
         {
             this._repository.Delete(id);
+            this.Save();
         }
 
         public virtual void Save()
@@ -51,6 +54,16 @@ namespace ShareFlow.Domain.Services
         public virtual IReadOnlyList<TEntity> FindList(Specification<TEntity> specification)
         {
             return this._repository.Find(specification).ToList();
-        }       
+        }
+
+        public IReadOnlyList<TEntity> FindByParentId(int id)
+        {
+            return this._repository.FindByParentId(id);
+        }
+
+        public TEntity FindOneByParentId(int id)
+        {
+            return this._repository.FindByParentId(id).FirstOrDefault();
+        }
     }
 }

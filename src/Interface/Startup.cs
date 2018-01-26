@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShareFlow.Core.Services;
 using ShareFlow.Core.Services.Interface;
+using ShareFlow.Core.Shared.Interfaces;
 using ShareFlow.Domain.Interfaces;
 using ShareFlow.Domain.Services;
 using ShareFlow.Domain.Shared.Interfaces;
@@ -37,18 +38,22 @@ namespace Interface
             services.AddDbContext<ShareFlowContext>(c =>
                 c.UseInMemoryDatabase("ShareFlow"));
 
-            services.AddScoped(typeof(IRepository<>), typeof(EfCoreRepository<>));
-            services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
-
-            services.AddScoped<IEventService, EventService>();
-            services.AddScoped<IParticipantService, ParticipantService>();
-            services.AddScoped<IExpenseService, ExpenseService>();
-
             services.AddScoped<IEventProcess, EventProcess>();
             services.AddScoped<IParticipantProcess, ParticipantProcess>();
             services.AddScoped<IExpenseProcess, ExpenseProcess>();
-
+            services.AddScoped<ITransactionProcess, TransactionProcess>();
             services.AddScoped<INotificationService, NotificationService>();
+
+            services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IParticipantService, ParticipantService>();
+            services.AddScoped<IExpenseService, ExpenseService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(EfCoreRepository<>));
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
 
             //services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
 

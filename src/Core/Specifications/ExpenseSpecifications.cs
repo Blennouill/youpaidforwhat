@@ -15,17 +15,12 @@ namespace ShareFlow.Core.Specifications
         
         public EqualsExpenseParticipantIdSpecification(int participantId)
         {
-
             _participantId = participantId;
-
         }
         
         public override Expression<Func<Expense, bool>> ToExpression()
         {
-
             return expense => expense.ParticipantId == _participantId;
-
         }
     }
-    
 }

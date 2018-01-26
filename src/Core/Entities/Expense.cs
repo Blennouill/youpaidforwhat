@@ -18,5 +18,16 @@ namespace ShareFlow.Domain.Entities
         public int ParticipantId { get; set; }
         public Participant Participant { get; set; }
         public virtual List<Beneficiary> Beneficiaries { get; set; }
+
+        public int ParentId { get => ParticipantId; }
+
+        public double GetSumShareNumber()
+        {
+            double total = 0;
+
+            this.Beneficiaries.ForEach(beneficiary => total += beneficiary.ShareNumber);
+
+            return total;
+        }
     }
 }
