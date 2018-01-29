@@ -65,7 +65,7 @@ namespace ShareFlow.Infrastructure.Data.Repositories
                             .ToList();
         }
 
-        public IReadOnlyList<TEntity> FindByParentId(int id)
+        public IReadOnlyList<TEntity> FindListByParentId(int id)
         {
             return this.Table
                             .Where(TEntity => TEntity.ParentId == id)

@@ -37,7 +37,7 @@ namespace ShareFlow.Interface.Process
 
             // check if expenses SUM is equal to SUM of transaction
 
-            return _mapper.Map<IReadOnlyList<Transaction>, IReadOnlyList<TransactionModel>>(_entityService.FindByParentId(lEvent.Id));
+            return _mapper.Map<IReadOnlyList<Transaction>, IReadOnlyList<TransactionModel>>(_entityService.FindListByParentId(lEvent.Id));
         }
 
         public void GenerateTransactionsByEvent(int eventId)

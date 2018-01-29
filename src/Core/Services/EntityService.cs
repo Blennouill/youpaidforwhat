@@ -56,14 +56,14 @@ namespace ShareFlow.Domain.Services
             return this._repository.Find(specification).ToList();
         }
 
-        public IReadOnlyList<TEntity> FindByParentId(int id)
+        public IReadOnlyList<TEntity> FindListByParentId(int id)
         {
-            return this._repository.FindByParentId(id);
+            return this._repository.FindListByParentId(id);
         }
 
         public TEntity FindOneByParentId(int id)
         {
-            return this._repository.FindByParentId(id).FirstOrDefault();
+            return this._repository.FindListByParentId(id).FirstOrDefault();
         }
     }
 }

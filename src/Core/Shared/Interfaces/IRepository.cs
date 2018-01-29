@@ -20,6 +20,6 @@ namespace ShareFlow.Domain.Shared.Interfaces
 
         IReadOnlyList<TEntity> Find(Specification<TEntity> specification);
 
-        IReadOnlyList<TEntity> FindByParentId(int id);
+        IReadOnlyList<TEntity> FindListByParentId(int id);
     }
 }

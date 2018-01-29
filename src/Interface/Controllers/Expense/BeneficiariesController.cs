@@ -18,7 +18,7 @@ namespace ShareFlow.Interface.Controllers.Event
         [HttpGet]
         public IActionResult List(int expenseId)
         {
-            var expenses = _beneficiaryService.FindByParentId(expenseId);
+            var expenses = _beneficiaryService.FindListByParentId(expenseId);
             if (expenses == null)
                 return new NotFoundResult();
 
